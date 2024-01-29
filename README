@@ -1,0 +1,7 @@
+Various IPC techniques:
+1. Unix Domain sockets
+2. Network sockets
+3. Message Queues
+4. Shared Memory
+5. Pipes
+6. Signals
