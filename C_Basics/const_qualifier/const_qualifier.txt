@@ -1,0 +1,161 @@
+
+Const Qualifier
+Constant are those Whose vlaue cannot change during the program execution.
+Make variable immutable.
+
+
+-------
+Case 1: Constant variable
+-------
+Syntax:
+const data_type variable_name = value (optional)
+
+const int var = 100;
+var = 200 /* compilation error */
+
+
+Pointers:
+==============
+
+------
+Case 2: Constant pointer
+------
+Value of the pointer wouldn't change.
+
+Constant pointer in C is one whose value cannot be changed in the program.
+It quite similar to constat variable in C.
+Only difference is pointer store memory addresses.
+So pointing to the same memory location to which it is initally assigned.
+
+Note: It is necessary to initalized the constant pointer during declartion itself, unlike normal pointer which can be left uninitalized.
+
+Syntax:
+<data_type> * const <pointer name> = <memory address>
+
+Note: Here, const keyword must appear after the * in declaration. 
+
+Ex:
+
+Valid:
+=======
+
+Case a:
+int a = 10, b = 20;
+int * const ptr = &a;
+printf("%d", *ptr);
+
+Case b:
+int a = 10;
+int * const ptr = &a;
+printf("a=%d ptr addr=%d\n", a, ptr);
+*ptr = 50
+printf("a=%d ptr addr=%d", a, ptr);
+
+o/p 
+10 100013
+50 100013
+
+* imp: value(addresss) of the pointer variable wouldn't change.
+
+InValid:
+=========
+
+Case a:
+int a = 10;
+int * const ptr;
+ptr = &a;  /* error : This is not allowed */
+
+Case b:
+int a = 10 , b = 20;
+int * const ptr = &a;
+ptr = &b; /* error : Cannot point to another variable */
+
+------
+Case 3: Pointer to a constant
+-------
+Pointer wolud point to a constant (created using const)
+Ordinary pointer variable that can only store the address of a constant variable.
+
+Note: Not necessary to initialize during declaration.
+
+Syntax:
+
+const <data_type> * <pointer_name> = &<constant variable name>
+or
+<data_type> const * <pointer_name> = &<constant variable name>
+
+Note: Notice that the const keyword appear before *.
+
+Why it is not advisable to use ordinary pointer to store constant variable ?
+Const int a = 10;
+int *ptr = &a;
+*ptr = 50;
+printf("%d", a);
+
+During compilation we will see waring but value of a change from 10 to 50 its a security flaw.
+Note : Even though value of a can be change using ptr in the above example. where cannot be changed directly.
+
+Ex: Pointer to a Constant
+
+Valid:
+
+Case a:
+const int a = 10;
+const int *ptr; /* Not necessary to initalize here */
+ptr = &a;
+printf("%d",*ptr);
+
+Case b: we can use such pointer to save non-const values
+int a = 10;
+const int *ptr;
+ptr = &a;
+printf("%d", *ptr);
+
+Case c:
+const int a = 10;
+const int b = 20;
+int const *ptr;
+ptr = &a;
+ptr = &b;
+printf("%d", *ptr);
+
+InValid:
+const int a = 10;
+const int *ptr = &a;
+*ptr = 50; /* this is not allowed */
+
+------
+Case 4: constant pointer to a constant
+-------
+neither the value of the pointer nor value of the variable pointed by the pointer would change.
+
+Syntax:
+const <data type> * const <pointer name> = &<constant variable name>
+or
+<data type> const * const <pointer name> = &<constant variable name>
+
+Note : It is necessary to initialize these type of pointers during declartion itself.
+
+Valid:
+
+Case 1:
+const int a = 10
+int const * const ptr = &a;
+printf("%d", *ptr);
+
+Case 2: These type of pointer can point to non-constant variables also.
+int b = 20;
+int const * const ptr = &b;
+printf("%d", *ptr);
+
+InValid:
+
+Case 1:
+
+const int a = 10;
+int const * const ptr = &a;
+*ptr = 50; /* cannot change value of constant variable */
+const int b = 20;
+ptr = &b; /* cannot re-assign pointer to different address */
+
+
