@@ -8,7 +8,9 @@ Make variable immutable.
 Case 1: Constant variable
 -------
 Syntax:
-const data_type variable_name = value (optional)
+const <data_type> <variable_name> = value
+
+Note : It is necessary to initalize variable with a value
 
 const int var = 100;
 var = 200 /* compilation error */
